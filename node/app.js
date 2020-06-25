@@ -1,25 +1,26 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const serveStatic = require("serve-static");
 
-var publicDir = path.join(__dirname, "/public");
-app.use(express.static(publicDir));
+app.use(
+  serveStatic(path.join(__dirname, "public"), {
+    maxAge: "1d",
+  })
+);
 
-// this will accept all the calls to root URL http://localhost:8080/
-// It will render the index.html available in the Project root directory as a Response
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname + "/index.html"));
   console.log("/ has been accessed");
 
-  //__dirname : It will resolve to your project folder.
+  // res.setHeader("Cache-Control", "public, max-age=2592000");
+  // res.setHeader("Expires", new Date(Date.now() + 2592000000).toUTCString());
+
+  res.sendFile(path.join(__dirname + "/index.html"));
 });
 
-// this will accept all the calls to the URL http://localhost:8080/about
-// It will render the about.html available in the Project root directory as a Response
 app.get("/about", (req, res) => {
-  res.sendFile(path.join(__dirname + "/about.html"));
   console.log("About has been accessed");
-  //__dirname : It will resolve to your project folder.
+  res.sendFile(path.join(__dirname + "/about.html"));
 });
 
 app.listen(3000, () => {
