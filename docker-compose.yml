@@ -18,3 +18,13 @@ services:
     volumes:
       - ./ihs.conf:/opt/bitnami/apache/conf/httpd.conf
       - ./ihs.html:/opt/bitnami/apache/htdocs/index.html
+
+  node:
+    build:
+      context: ./node
+    image: mikeqiu2011/node_bootstrap
+    working_dir: /home/node/app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./node:/home/node/app
