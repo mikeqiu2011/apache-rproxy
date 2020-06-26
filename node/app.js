@@ -5,7 +5,7 @@ const serveStatic = require("serve-static");
 
 app.use(
   serveStatic(path.join(__dirname, "public"), {
-    // maxAge: "1d",
+    maxAge: "1d",
   })
 );
 
