@@ -2,7 +2,7 @@
 FROM node:alpine
 
 # COPY all the files from Current Directory into the Container
-# COPY ./ ./
+COPY ./ ./
 
 # Install the Project Dependencies like Express Framework
 RUN npm install
